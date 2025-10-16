@@ -5,29 +5,35 @@ import { quoteOrInvoiceSchema, computeTotals, formatCurrency } from '@domain/ind
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
-const BASE_SYSTEM_PROMPT = `Tu es un assistant qui collecte les informations nécessaires pour un devis ou une facture en fr-CH.
+const BASE_SYSTEM_PROMPT = `Tu es un assistant fr-CH ultra bref pour créer un devis ou une facture.
+Objectif: poser le MINIMUM de questions. Ne demande que:
+- le nom du client,
+- l'adresse du client,
+- la désignation (une ligne) du service/produit.
+Tout le reste est par défaut et ne doit PAS être demandé:
+- vendeur: déjà connu; ne pas reposer la question;
+- devise: CHF par défaut;
+- TVA: 8.1% (0.081) par défaut; ne jamais demander;
+- quantité: 1 par défaut;
+- prix unitaire: 0 par défaut si non fourni;
+- date d'émission: aujourd'hui (format ISO) si non fournie;
+- numéro: généré côté serveur; ne jamais demander.
+
 Règles:
-- Pose une question à la fois, questions courtes et ciblées.
-- Ta réponse doit être EXCLUSIVEMENT soit:
-  1) une seule question en français, si des informations manquent;
-  2) un JSON STRICT conforme au schéma ci-dessous, sans aucun texte autour, si tout est complet.
-- Ne dis JAMAIS que tu ne peux pas créer de PDF. Le PDF est généré côté serveur après validation explicite.
-- N'indique jamais d'utiliser des services externes; reste dans le flux de collecte.
-- N'interroge JAMAIS sur la TVA ni sur la devise: utilise par défaut TVA 7.7% (0.077) et devise CHF si l'utilisateur ne précise rien.
-- Quand tu as TOUT (kind: devis|facture, seller, buyer, items[], currency, issueDate), réponds UNIQUEMENT avec un JSON strict conforme au schéma sans texte en dehors:
+- Réponds soit par UNE seule question, soit par un JSON STRICT quand les 3 infos (nom, adresse, désignation) sont disponibles.
+- JSON STRICT, sans texte autour, conforme au schéma:
 {
   "kind": "devis"|"facture",
   "seller": {"name": string, "address": string, "email"?: string, "vatNumber"?: string},
   "buyer": {"name": string, "address": string, "email"?: string, "vatNumber"?: string},
-  "items": [{"description": string, "quantity": number, "unitPrice": number, "vatRate"?: number}],
-  "currency": "CHF"|"EUR",
+  "items": [{"description": string, "quantity"?: number, "unitPrice"?: number, "vatRate"?: number}],
+  "currency"?: "CHF"|"EUR",
   "notes"?: string,
   "terms"?: string,
-  "issueDate": string (ISO),
+  "issueDate"?: string (ISO),
   "dueDate"?: string (ISO)
 }
-Validation: quantité>0, prix>=0, 0<=tva<=1, currency∈{CHF,EUR}.
-Sorties interdites: excuses, mentions de PDF impossibles, explications longues, liens externes.
+Contraintes: ne jamais parler de PDF; ne pas demander TVA/devise/vendeur/numéro/date si l'utilisateur ne le fait pas.
 `;
 
 export default function ChatPage() {
@@ -112,19 +118,34 @@ export default function ChatPage() {
       // Tente d'extraire un JSON du message
       const maybeJson = extractJson(content);
       if (maybeJson) {
-        // Si le vendeur manque, applique la valeur par défaut
-        const withDefaultSeller = {
-          ...maybeJson,
-          seller: maybeJson.seller ?? defaultSeller ?? maybeJson.seller,
-          items: Array.isArray(maybeJson.items)
-            ? maybeJson.items.map((it: any) => ({ ...it, vatRate: it.vatRate ?? 0.081 }))
-            : maybeJson.items,
-          currency: maybeJson.currency ?? 'CHF',
-        };
-        const parsed = quoteOrInvoiceSchema.safeParse(withDefaultSeller);
-        if (parsed.success) {
-          setDraft(parsed.data);
-        }
+        // Applique les valeurs par défaut minimales
+        const completeSeller = defaultSeller ?? maybeJson.seller;
+        const oneItem = Array.isArray(maybeJson.items) && maybeJson.items.length > 0
+          ? maybeJson.items[0]
+          : { description: String(maybeJson.description || 'Service'), quantity: 1, unitPrice: 0 };
+        const withDefaults = {
+          kind: (maybeJson.kind === 'facture' || maybeJson.kind === 'devis') ? maybeJson.kind : 'devis',
+          seller: completeSeller,
+          buyer: {
+            name: String(maybeJson.buyer?.name || maybeJson.name || '').trim(),
+            address: String(maybeJson.buyer?.address || maybeJson.address || '').trim(),
+            email: maybeJson.buyer?.email ?? undefined,
+            vatNumber: maybeJson.buyer?.vatNumber ?? undefined,
+          },
+          items: [{
+            description: String(oneItem.description || 'Service').trim(),
+            quantity: Number(oneItem.quantity || 1),
+            unitPrice: Number(oneItem.unitPrice || 0),
+            vatRate: oneItem.vatRate ?? 0.081,
+          }],
+          currency: maybeJson.currency || 'CHF',
+          issueDate: maybeJson.issueDate || new Date().toISOString().split('T')[0],
+          notes: maybeJson.notes || undefined,
+          terms: maybeJson.terms || undefined,
+          dueDate: maybeJson.dueDate || undefined,
+        } as const;
+        const parsed = quoteOrInvoiceSchema.safeParse(withDefaults);
+        if (parsed.success) setDraft(parsed.data);
       }
     } catch (e: any) {
       if (e?.name === 'AbortError') {
