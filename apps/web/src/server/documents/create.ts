@@ -7,8 +7,22 @@ import { env } from '@/server/env';
 import { computeTotals, formatCurrency, formatDateISOToCH, quoteOrInvoiceSchema } from '@domain/index';
 import { nextNumber } from '@/server/numbering';
 
+function getTodayLocalISODate(): string {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 export async function createDocument(payload: unknown, options: { validated: boolean }) {
-  const parsed = quoteOrInvoiceSchema.safeParse(payload);
+  // Server-side default for issueDate if omitted by client/LLM
+  const prefilled =
+    payload && typeof payload === 'object'
+      ? { ...(payload as any), issueDate: (payload as any).issueDate ?? getTodayLocalISODate() }
+      : payload;
+
+  const parsed = quoteOrInvoiceSchema.safeParse(prefilled);
   if (!parsed.success) throw new Error('Invalid payload');
   if (!options.validated) throw new Error('Validation gating not satisfied');
   const data = parsed.data;
