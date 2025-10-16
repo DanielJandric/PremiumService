@@ -201,17 +201,6 @@ export default function ChatPage() {
 
   const totals = useMemo(() => (draft ? computeTotals(draft.items) : null), [draft]);
 
-  const servicePresets = useMemo(
-    () => [
-      'nettoyage maison 1 x 3500 CHF',
-      'blanchisserie 2 x 25 CHF',
-      'rideaux 1 x 120 CHF',
-      'nettoyage fin de bail 1 x 500 CHF',
-      'tapis entretien 1 x 200 CHF',
-    ],
-    []
-  );
-
   const NORMALIZED_SERVICES = useMemo(
     () => [
       'Blanchisserie / literie',
@@ -251,23 +240,7 @@ export default function ChatPage() {
     setSuggestions([...starts, ...contains].slice(0, 6));
   }, [input, NORMALIZED_SERVICES]);
 
-  const chips = useMemo(() => {
-    const suggestions: string[] = [];
-    // Choix du type si non défini
-    if (!draft?.kind) suggestions.push('Créer un devis', 'Créer une facture');
-    // Champs client rapides si manquants
-    if (!draft?.buyer?.name) suggestions.push('Nom: Jean Dupont');
-    if (!draft?.buyer?.address) suggestions.push('Adresse: Rue des Lilas 10, 1000 Lausanne');
-    // Services suggérés
-    if (!draft?.items?.length) {
-      suggestions.push(...servicePresets.slice(0, 3));
-    } else {
-      suggestions.push(...servicePresets.slice(0, 2));
-    }
-    // Clôture rapide
-    if (draft?.items?.length) suggestions.push("Rien à rajouter");
-    return suggestions.slice(0, 6);
-  }, [draft, servicePresets]);
+  const chips = useMemo(() => ['Créer un devis', 'Créer une facture'], []);
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
