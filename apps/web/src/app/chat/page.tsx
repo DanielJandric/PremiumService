@@ -203,9 +203,13 @@ export default function ChatPage() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <section className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 shadow-xl">
+      <section className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 shadow-xl flex flex-col">
         <h1 className="text-2xl font-semibold">Chat</h1>
-        <div ref={listRef} className="mt-4 rounded p-3 h-[60vh] overflow-auto bg-white/5 border border-white/20">
+        <div
+          ref={listRef}
+          className="mt-2 flex-1 rounded p-3 overflow-y-auto bg-white/5 border border-white/20"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {messages.length === 0 ? (
             <div className="text-slate-200/80 text-sm">
               Démarre la conversation: indique si tu veux un devis ou une facture, le client, les
@@ -229,19 +233,23 @@ export default function ChatPage() {
           })}
           <div ref={endRef} />
         </div>
-        <div className="mt-3 flex gap-2 flex-wrap">
+        <div className="mt-2 sticky bottom-0 left-0 right-0 z-10 flex gap-2 flex-wrap pb-[env(safe-area-inset-bottom)]">
           {chips.map((c, i) => (
             <button
               key={i}
               onClick={() => setInput(c)}
-              className="text-xs rounded-full border border-white/20 bg-white/10 px-3 py-1"
+              className="text-xs rounded-full border border-white/20 bg-white/10 px-3 py-1 min-h-9"
             >{c}</button>
           ))}
           <input
-            className="flex-1 border border-white/20 bg-white/10 rounded px-3 py-2 text-white placeholder:text-slate-300"
+            className="flex-1 border border-white/20 bg-white/10 rounded px-3 py-3 text-white placeholder:text-slate-300 min-h-11"
             placeholder="Votre message…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            autoComplete="off"
+            autoCorrect="on"
+            autoCapitalize="sentences"
+            enterKeyHint="send"
             onKeyDown={(e) => {
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -249,10 +257,10 @@ export default function ChatPage() {
               }
             }}
           />
-          <button disabled={pending} className="rounded bg-emerald-600 text-white px-3 py-2 disabled:opacity-50 shadow hover:bg-emerald-500 transition" onClick={send}>
+          <button disabled={pending} className="rounded bg-emerald-600 text-white px-4 py-3 disabled:opacity-50 shadow hover:bg-emerald-500 transition min-h-11" onClick={send}>
             {pending ? 'Envoi…' : 'Envoyer'}
           </button>
-          <button className="rounded border border-white/20 bg-white/10 px-3 py-2" onClick={resetChat}>Réinitialiser</button>
+          <button className="rounded border border-white/20 bg-white/10 px-3 py-3 min-h-11" onClick={resetChat}>Réinitialiser</button>
         </div>
         {error ? <div className="mt-2 text-sm text-red-300 break-words">{error}</div> : null}
       </section>
