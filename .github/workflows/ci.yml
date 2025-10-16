@@ -21,6 +21,13 @@ jobs:
           cache: 'pnpm'
       - run: pnpm install --frozen-lockfile
       - run: pnpm -C packages/domain build
+      - run: pnpm -C apps/web exec prisma generate
       - run: pnpm -C apps/web lint
       - run: pnpm -C apps/web build
+        env:
+          DATABASE_URL: postgresql://placeholder
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder
+          SUPABASE_SERVICE_ROLE_KEY: placeholder
+          OPENAI_API_KEY: placeholder
 
