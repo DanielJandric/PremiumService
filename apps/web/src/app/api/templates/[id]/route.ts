@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/server/db';
 
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
-  const id = params.id;
+export async function PATCH(req: NextRequest, context: any) {
+  const id = context?.params?.id as string;
   const json = await req.json().catch(() => null);
   if (!json) return NextResponse.json({ error: 'Invalid body' }, { status: 400 });
   const { name, htmlSource, css, brand } = json as {
