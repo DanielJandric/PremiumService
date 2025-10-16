@@ -6,22 +6,25 @@ import { quoteOrInvoiceSchema, computeTotals, formatCurrency } from '@domain/ind
 type Message = { role: 'user' | 'assistant'; content: string };
 
 const BASE_SYSTEM_PROMPT = `Tu es un assistant fr-CH ultra bref pour créer un devis ou une facture.
-Objectif: poser le MINIMUM de questions. Ne demande que:
-- le nom du client,
-- l'adresse du client,
-- la désignation (une ligne) du service/produit.
+Objectif: poser le MINIMUM de questions.
+- Demande seulement: nom du client, adresse du client, et la/des désignation(s) (services/produits). Autorise plusieurs lignes.
+- L'utilisateur peut écrire des lignes naturelles, par ex: "nettoyage maison 1 fois à 3500 chf" ou "blanchisserie 2 x 25 CHF".
+- Interprète ces lignes: description, quantity (par défaut 1), unitPrice (nombre, sans monnaie), vatRate=0.081 par défaut.
 Tout le reste est par défaut et ne doit PAS être demandé:
-- vendeur: déjà connu; ne pas reposer la question;
-- devise: CHF par défaut;
-- TVA: 8.1% (0.081) par défaut; ne jamais demander;
-- quantité: 1 par défaut;
-- prix unitaire: 0 par défaut si non fourni;
-- date d'émission: aujourd'hui (format ISO) si non fournie;
-- numéro: généré côté serveur; ne jamais demander.
+- vendeur: déjà connu; ne pas reposer la question
+- devise: CHF par défaut
+- TVA: 8.1% (0.081) par défaut; ne jamais demander
+- quantité: 1 par défaut
+- prix unitaire: 0 par défaut si non fourni
+- date d'émission: aujourd'hui (ISO) si non fournie
+- numéro: généré côté serveur; ne jamais demander
 
-Règles:
-- Réponds soit par UNE seule question, soit par un JSON STRICT quand les 3 infos (nom, adresse, désignation) sont disponibles.
-- JSON STRICT, sans texte autour, conforme au schéma:
+Flux:
+1) Récupère nom + adresse du client.
+2) Demande la/les désignation(s). Accepte plusieurs items séparés par virgule ou nouvelle ligne.
+3) Propose une ultime question: "Avez-vous quelque chose à rajouter ?". Si non, réponds avec le JSON final.
+
+Quand tout est prêt, réponds UNIQUEMENT avec un JSON STRICT, sans texte autour, conforme au schéma:
 {
   "kind": "devis"|"facture",
   "seller": {"name": string, "address": string, "email"?: string, "vatNumber"?: string},
@@ -120,9 +123,9 @@ export default function ChatPage() {
       if (maybeJson) {
         // Applique les valeurs par défaut minimales
         const completeSeller = defaultSeller ?? maybeJson.seller;
-        const oneItem = Array.isArray(maybeJson.items) && maybeJson.items.length > 0
-          ? maybeJson.items[0]
-          : { description: String(maybeJson.description || 'Service'), quantity: 1, unitPrice: 0 };
+        const items = Array.isArray(maybeJson.items) && maybeJson.items.length > 0
+          ? maybeJson.items
+          : [{ description: String(maybeJson.description || 'Service'), quantity: 1, unitPrice: 0 }];
         const withDefaults = {
           kind: (maybeJson.kind === 'facture' || maybeJson.kind === 'devis') ? maybeJson.kind : 'devis',
           seller: completeSeller,
@@ -132,12 +135,12 @@ export default function ChatPage() {
             email: maybeJson.buyer?.email ?? undefined,
             vatNumber: maybeJson.buyer?.vatNumber ?? undefined,
           },
-          items: [{
-            description: String(oneItem.description || 'Service').trim(),
-            quantity: Number(oneItem.quantity || 1),
-            unitPrice: Number(oneItem.unitPrice || 0),
-            vatRate: oneItem.vatRate ?? 0.081,
-          }],
+          items: items.map((it: any) => ({
+            description: String(it.description || 'Service').trim(),
+            quantity: Number(it.quantity || 1),
+            unitPrice: Number(it.unitPrice || 0),
+            vatRate: it.vatRate ?? 0.081,
+          })),
           currency: maybeJson.currency || 'CHF',
           issueDate: maybeJson.issueDate || new Date().toISOString().split('T')[0],
           notes: maybeJson.notes || undefined,
