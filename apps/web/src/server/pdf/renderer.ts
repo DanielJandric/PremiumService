@@ -19,14 +19,19 @@ export async function renderHtmlToPdf(options: {
   const browser = await getBrowser();
   const context = await browser.newContext();
   const page = await context.newPage();
+  const base = options.baseUrl ?? env.NEXT_PUBLIC_BASE_URL ?? 'http://localhost:3000';
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"/>${
     options.css ? `<style>${options.css}</style>` : ''
-  }</head><body>${options.html}</body></html>`;
-  const base = options.baseUrl || env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3004';
-  await page.setContent(html, { waitUntil: 'domcontentloaded', timeout: 15000 });
-  await page.addScriptTag({ content: `document.querySelectorAll('img').forEach(img => { if (img.getAttribute('src')?.startsWith('/')) { img.src = '${base}' + img.getAttribute('src'); } });` });
-  await page.waitForLoadState('load');
-  await page.waitForFunction(() => Array.from(document.images).every((i) => (i.complete && (i.naturalHeight||0) > 0)), null, { timeout: 10000 });
+  }<base href="${base}"></head><body>${options.html}</body></html>`;
+  await page.setContent(html, { waitUntil: 'networkidle', timeout: 30000 });
+  // Best effort: wait for images if any; do not fail the whole render on timeout
+  try {
+    await page.waitForFunction(
+      () => Array.from(document.images).every((i) => i.complete && (i.naturalHeight || 0) > 0),
+      undefined,
+      { timeout: 10000 }
+    );
+  } catch {}
   const pdf = await page.pdf({
     format: 'A4',
     printBackground: true,
