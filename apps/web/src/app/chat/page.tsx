@@ -42,6 +42,7 @@ Contraintes: ne jamais parler de PDF; ne pas demander TVA/devise/vendeur/numéro
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [draft, setDraft] = useState<QuoteOrInvoice | null>(null);
@@ -211,6 +212,45 @@ export default function ChatPage() {
     []
   );
 
+  const NORMALIZED_SERVICES = useMemo(
+    () => [
+      'Blanchisserie / literie',
+      'Lavage linge de literie',
+      'Nettoyage chaussures',
+      'Nettoyage stores',
+      'Nettoyage fin de bail',
+      'Tapis entretien',
+      'Linge au kilo',
+      'Nettoyage de rideaux',
+      'Détachage',
+      'Repassage',
+      'Nettoyage de maison',
+      "Nettoyage d'entretien",
+      'Forfaits chemises',
+      'Forfaits professionnels',
+    ],
+    []
+  );
+
+  // Update typeahead suggestions when typing
+  useEffect(() => {
+    const q = input.trim().toLowerCase();
+    if (q.length < 2) {
+      setSuggestions([]);
+      return;
+    }
+    // Ignore when user is entering structured commands like Nom:/Adresse:
+    if (q.startsWith('nom:') || q.startsWith('adresse:') || q.startsWith('créer ')) {
+      setSuggestions([]);
+      return;
+    }
+    const starts = NORMALIZED_SERVICES.filter((s) => s.toLowerCase().startsWith(q));
+    const contains = NORMALIZED_SERVICES.filter(
+      (s) => !starts.includes(s) && s.toLowerCase().includes(q)
+    );
+    setSuggestions([...starts, ...contains].slice(0, 6));
+  }, [input, NORMALIZED_SERVICES]);
+
   const chips = useMemo(() => {
     const suggestions: string[] = [];
     // Choix du type si non défini
@@ -285,6 +325,19 @@ export default function ChatPage() {
               }
             }}
           />
+          {suggestions.length > 0 && (
+            <div className="w-full -mt-1 rounded-lg border border-white/20 bg-[#0b1f1a]/95 text-slate-100 shadow-lg max-h-48 overflow-y-auto">
+              {suggestions.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => setInput(s)}
+                  className="block w-full text-left px-3 py-2 hover:bg-white/10"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
           <button disabled={pending} className="rounded bg-emerald-600 text-white px-4 py-3 disabled:opacity-50 shadow hover:bg-emerald-500 transition min-h-11" onClick={send}>
             {pending ? 'Envoi…' : 'Envoyer'}
           </button>
