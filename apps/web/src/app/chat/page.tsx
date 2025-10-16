@@ -142,7 +142,8 @@ export default function ChatPage() {
             vatRate: it.vatRate ?? 0.081,
           })),
           currency: maybeJson.currency || 'CHF',
-          issueDate: maybeJson.issueDate || new Date().toISOString().split('T')[0],
+          // Force la date du jour côté UI, pour cohérence avec le serveur
+          issueDate: new Date().toISOString().split('T')[0],
           notes: maybeJson.notes || undefined,
           terms: maybeJson.terms || undefined,
           dueDate: maybeJson.dueDate || undefined,

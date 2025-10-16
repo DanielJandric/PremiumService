@@ -7,19 +7,25 @@ import { env } from '@/server/env';
 import { computeTotals, formatCurrency, formatDateISOToCH, quoteOrInvoiceSchema } from '@domain/index';
 import { nextNumber } from '@/server/numbering';
 
-function getTodayLocalISODate(): string {
-  const d = new Date();
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
+function getTodayISOInTimezone(tz: string = 'Europe/Zurich'): string {
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(now);
+  const year = parts.find((p) => p.type === 'year')?.value ?? String(now.getFullYear());
+  const month = parts.find((p) => p.type === 'month')?.value ?? String(now.getMonth() + 1).padStart(2, '0');
+  const day = parts.find((p) => p.type === 'day')?.value ?? String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 export async function createDocument(payload: unknown, options: { validated: boolean }) {
-  // Server-side default for issueDate if omitted by client/LLM
+  // Server-side enforcement: always use today's date (Europe/Zurich) regardless of LLM/client date
   const prefilled =
     payload && typeof payload === 'object'
-      ? { ...(payload as any), issueDate: (payload as any).issueDate ?? getTodayLocalISODate() }
+      ? { ...(payload as any), issueDate: getTodayISOInTimezone('Europe/Zurich') }
       : payload;
 
   const parsed = quoteOrInvoiceSchema.safeParse(prefilled);
