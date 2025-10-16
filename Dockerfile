@@ -8,7 +8,7 @@ COPY packages ./packages
 COPY apps/web ./apps/web
 
 RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --no-frozen-lockfile
 RUN pnpm -C packages/domain build
 RUN pnpm -C apps/web build
 
