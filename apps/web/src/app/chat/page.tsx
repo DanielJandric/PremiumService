@@ -142,6 +142,8 @@ export default function ChatPage() {
     setPending(true);
     setError(null);
     try {
+      // iOS/Safari: pre-open window in user gesture to avoid popup blocker
+      const win = typeof window !== 'undefined' ? window.open('', '_blank') : null;
       const res = await fetch('/api/documents', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -149,7 +151,15 @@ export default function ChatPage() {
       });
       if (!res.ok) throw new Error(await res.text());
       const json = await res.json();
-      if (json?.url) window.open(json.url, '_blank');
+      if (json?.url) {
+        if (win) {
+          win.location.href = json.url;
+        } else {
+          window.open(json.url, '_blank');
+        }
+      } else if (win) {
+        win.close();
+      }
     } catch (e: any) {
       setError(e?.message ?? 'Erreur');
     } finally {
