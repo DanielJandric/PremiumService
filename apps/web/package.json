@@ -1,0 +1,53 @@
+{
+  "name": "@premium/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "e2e": "playwright test",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "seed": "node -r ts-node/register prisma/seed.ts"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.6.0",
+    "@premium/domain": "workspace:*",
+    "@prisma/client": "5.22.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "@tanstack/react-query": "^5.51.1",
+    "@trpc/client": "^11.0.0-rc.472",
+    "@trpc/server": "^11.0.0-rc.472",
+    "class-variance-authority": "^0.7.0",
+    "handlebars": "^4.7.8",
+    "lucide-react": "^0.449.0",
+    "monaco-editor": "^0.52.0",
+    "next": "15.0.3",
+    "next-intl": "^3.15.0",
+    "next-themes": "^0.3.0",
+    "pino": "^9.3.2",
+    "pino-pretty": "^11.2.2",
+    "playwright": "^1.47.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-hook-form": "^7.53.0",
+    "superjson": "^2.2.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.13.5",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.0.3",
+    "postcss": "^8.4.41",
+    "prisma": "^5.19.1",
+    "tailwindcss": "^3.4.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+}

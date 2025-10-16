@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+
+# build outputs
+.next/
+dist/
+out/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editor
+.vscode/
+.idea/
+
+# prisma
+apps/web/prisma/dev.db*
+apps/web/prisma/*.db-journal
+
+# playwright
+playwright-report/
+test-results/
+
+# Supabase storage mock
+storage/
+

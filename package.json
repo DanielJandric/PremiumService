@@ -1,0 +1,31 @@
+{
+  "name": "premium-solutions",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -C apps/web dev",
+    "build": "pnpm -C apps/web build",
+    "start": "pnpm -C apps/web start",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "pnpm -C apps/web e2e",
+    "prisma:generate": "pnpm -C apps/web prisma:generate",
+    "prisma:migrate": "pnpm -C apps/web prisma:migrate",
+    "seed": "pnpm -C apps/web seed"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.0.0",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3",
+    "vitest": "^2.0.0"
+  }
+}
+
