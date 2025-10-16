@@ -16,7 +16,8 @@ export async function POST(req: NextRequest) {
   const { html, css, data } = parsed.data;
   const merged = renderTemplate(html, data);
   const pdf = await renderHtmlToPdf({ html: merged, css });
-  return new NextResponse(pdf, {
+  const blob = new Blob([pdf], { type: 'application/pdf' });
+  return new NextResponse(blob.stream() as any, {
     headers: {
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'inline; filename="preview.pdf"',
