@@ -3,8 +3,8 @@ import { z } from 'zod';
 export const partySchema = z.object({
   name: z.string().min(1),
   address: z.string().min(1),
-  email: z.string().email().optional(),
-  vatNumber: z.string().min(1).optional(),
+  email: z.string().email().optional().nullable(),
+  vatNumber: z.string().min(1).optional().nullable(),
 });
 
 export type Party = z.infer<typeof partySchema>;
