@@ -111,7 +111,11 @@ ${C}
                 .replace(/Depuis\s*2016/g, 'Depuis 2020')
                 .replace(/2016/g, '2020')
                 .replace(/près de 6 ans/gi, '5 ans')
-                .replace(/6\+/g, '5+');
+                .replace(/6\+/g, '5+')
+                .replace(
+                  /Premium Solution vous offre des services professionnels de nettoyage pour votre maison, votre entreprise et des prestations de conciergerie adaptées à tous vos besoins\.?/g,
+                  'Premium Solution vous offre des services professionnels haut de gamme de nettoyage pour votre maison, votre entreprise et des prestations de conciergerie personnalisées, adaptées à tous vos besoins avec un souci du détail irréprochable.'
+                );
               if (nt !== t) n.nodeValue = nt;
             });
           });
