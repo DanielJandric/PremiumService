@@ -133,13 +133,46 @@ pnpm -C apps/web test:e2e
 - **Public (marketing)** - Build statique du projet `NewWebSite/` (React + Vite + Tailwind v4):
   - Routes: `/`, `/a-propos`, `/services`, `/contact` → servis via `public/original-index.html` (middleware rewrite)
   - Modifier les pages dans `NewWebSite/client/src/pages/`
-  - Build: `cd NewWebSite && npm run build`
-  - Copier: `copy dist/public/index.html ../apps/web/public/original-index.html` + assets
-  - **Note**: NewWebSite utilise Tailwind v4 (incompatible avec Next.js qui utilise v3)
+  - **Workflow simplifié** :
+    - Build seulement: `.\build-public.ps1`
+    - Build + déploiement automatique: `.\deploy-public.ps1`
+  - **Note**: NewWebSite utilise Tailwind v4 avec design personnalisé (couleurs oklch, animations)
 - **Privé (appli Next)** - Next.js avec Tailwind v3:
-  - Chat: `/internal/chat` (redirigé depuis `/chat`)
-  - Documents: `/internal/documents` (redirigé depuis `/documents`)
-  - Templates: `/templates`
+  - Chat: `/internal/chat` (redirigé depuis `/chat`) - **Hot reload actif** ⚡
+  - Documents: `/internal/documents` (redirigé depuis `/documents`) - **Hot reload actif** ⚡
+  - Templates: `/templates` - **Hot reload actif** ⚡
+
+### Workflow de développement
+
+#### Pages publiques (NewWebSite)
+```powershell
+# 1. Modifier les pages
+NewWebSite/client/src/pages/Home.tsx
+NewWebSite/client/src/pages/About.tsx
+NewWebSite/client/src/pages/Services.tsx
+NewWebSite/client/src/pages/Contact.tsx
+
+# 2. Build et copie (option simple)
+.\build-public.ps1
+
+# 3. OU Build + Commit + Push automatique (option complète)
+.\deploy-public.ps1
+# ou avec message personnalisé:
+.\deploy-public.ps1 "Ajout nouveau service nettoyage"
+```
+
+#### Pages internes (Next.js - Hot reload automatique)
+```powershell
+# 1. Lancer le serveur de dev
+pnpm -C apps/web dev -p 3012
+
+# 2. Modifier les pages
+apps/web/src/app/chat/page.tsx
+apps/web/src/app/internal/documents/page.tsx
+apps/web/src/app/templates/page.tsx
+
+# 3. Les changements apparaissent INSTANTANÉMENT dans le navigateur! ⚡
+```
 
 ### URLs locales
 
