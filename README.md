@@ -130,12 +130,16 @@ pnpm -C apps/web test:e2e
 
 ### UI: marketing vs privé
 
-- Public (marketing) servi 1:1 depuis le build fourni:
-  - Routes: `/`, `/a-propos`, `/services`, `/contact` → `public/original-index.html` + `public/assets/*` + `public/newsite.css` (middleware de réécriture).
-- Privé (appli Next):
+- **Public (marketing)** - Next.js SSR natif dans `app/(public)/`:
+  - Routes: `/`, `/a-propos`, `/services`, `/contact`
+  - Layout partagé avec Header et Footer dans `(public)/layout.tsx`
+  - Hot reload complet en développement
+- **Privé (appli Next)**:
   - Chat: `/internal/chat` (redirigé depuis `/chat`)
   - Documents: `/internal/documents` (redirigé depuis `/documents`)
   - Templates: `/templates`
+
+**Note**: L'ancien système avec build séparé (`NewWebSite/`) a été unifié dans Next.js pour simplifier la maintenance.
 
 ### URLs locales
 
