@@ -120,7 +120,7 @@ export default function ServicesPage() {
 
       <section className="bg-accent/20 py-16 md:py-24">
         <div className="container text-center">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Besoin d'un service personnalisé ?</h2>
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Besoin d&apos;un service personnalisé ?</h2>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground mb-8">
             Nous offrons également des prestations sur mesure pour les entreprises et les besoins spécifiques. Contactez-nous pour discuter de votre projet et bénéficier de notre expertise.
           </p>

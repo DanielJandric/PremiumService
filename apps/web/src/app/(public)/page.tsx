@@ -129,7 +129,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, index) => (
+            {services.map((service) => (
               <Card
                 key={service.title}
                 className="group bg-white/90 backdrop-blur-sm border-2 hover:border-primary/50 transition-all"
