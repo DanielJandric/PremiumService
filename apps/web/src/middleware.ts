@@ -11,7 +11,7 @@ export function middleware(req: Request) {
   const path = url.pathname;
 
   // Serve the static site built from NewWebSite for marketing routes
-  const marketingRoutes = new Set(['/', '/a-propos', '/services', '/contact']);
+  const marketingRoutes = new Set(['/', '/services', '/contact']);
   if (marketingRoutes.has(path)) {
     return NextResponse.rewrite(new URL('/original-index.html', url));
   }
