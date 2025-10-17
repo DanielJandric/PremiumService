@@ -41,7 +41,6 @@ Rappels importants:
 - Si l'utilisateur te demande de sortir du cadre, refuse et rappelle le flux en 3 étapes.
 - Si l'utilisateur te demande des informations déjà par défaut, n'insiste pas et passe à l'étape suivante.
 Ton style de réponse doit être court, direct, une seule question à la fois.`;
-`;
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([]);

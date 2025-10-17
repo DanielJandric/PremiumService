@@ -61,7 +61,7 @@ export default function ContactPage() {
                         <select id="service" name="service" value={formData.service} onChange={handleChange} required className="flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm">
                           <option value="">Sélectionnez un service</option>
                           <option value="maison">Nettoyage de maison</option>
-                          <option value="entretien">Nettoyage d'entretien</option>
+                          <option value="entretien">Nettoyage d&apos;entretien</option>
                           <option value="stores">Nettoyage stores</option>
                           <option value="fin-bail">Nettoyage fin de bail</option>
                           <option value="rideaux">Nettoyage de rideaux</option>
@@ -111,7 +111,7 @@ export default function ContactPage() {
 
               <div className="border rounded-lg bg-primary text-primary-foreground">
                 <div className="p-6">
-                  <h3 className="mb-2 text-lg font-semibold">Besoin d'un service urgent ?</h3>
+                  <h3 className="mb-2 text-lg font-semibold">Besoin d&apos;un service urgent ?</h3>
                   <p className="mb-4 text-sm opacity-90">Appelez-nous directement pour un service express en 4 heures</p>
                   <a href="tel:+41766074682" className="inline-flex items-center justify-center rounded-md bg-white/10 px-5 py-3 shadow hover:bg-white/20 w-full">Appeler maintenant</a>
                 </div>

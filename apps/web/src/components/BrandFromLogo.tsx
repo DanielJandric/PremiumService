@@ -1,6 +1,5 @@
 "use client";
 import { useEffect } from 'react';
-import { applyBrandFromLogo } from '@/server/templates/merge';
 
 // Lightweight client applier using brand.ts logic copied from NewWebSite if available.
 export default function BrandFromLogo() {

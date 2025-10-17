@@ -148,7 +148,7 @@ export default function HomePage() {
               <div>
                 <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Pourquoi choisir Premium Solution ?</h2>
                 <p className="mb-8 text-lg text-muted-foreground">
-                  Fondé sur une expérience forte de près de 6 ans, notre savoir-faire fait notre réussite. Il atteste d'un gage de qualité et garantit nettoyage et soin professionnel pour vos vêtements et tous vos articles textiles.
+                  Fondé sur une expérience forte de près de 6 ans, notre savoir-faire fait notre réussite. Il atteste d&apos;un gage de qualité et garantit nettoyage et soin professionnel pour vos vêtements et tous vos articles textiles.
                 </p>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {features.map((feature) => (
@@ -176,7 +176,7 @@ export default function HomePage() {
                         <Star key={i} className="h-5 w-5 fill-primary text-primary" />
                       ))}
                     </div>
-                    <p className="mb-4 text-muted-foreground">"Travail bien fait et rapidement et le personnel toujours très aimable. Je recommande vivement Premium Solution !"</p>
+                    <p className="mb-4 text-muted-foreground">&quot;Travail bien fait et rapidement et le personnel toujours très aimable. Je recommande vivement Premium Solution !&quot;</p>
                     <div className="text-sm font-medium text-foreground">Marie L.</div>
                     <div className="text-xs text-muted-foreground">Cliente depuis 2020</div>
                   </CardContent>
@@ -192,7 +192,7 @@ export default function HomePage() {
                         <Star key={i} className="h-5 w-5 fill-primary text-primary" />
                       ))}
                     </div>
-                    <p className="mb-4 text-muted-foreground">"Travail rapide et soigné et les dames qui m'ont servie sont très sympathiques. Service impeccable !"</p>
+                    <p className="mb-4 text-muted-foreground">&quot;Travail rapide et soigné et les dames qui m&apos;ont servie sont très sympathiques. Service impeccable !&quot;</p>
                     <div className="text-sm font-medium text-foreground">Sophie D.</div>
                     <div className="text-xs text-muted-foreground">Cliente depuis 2019</div>
                   </CardContent>
@@ -207,7 +207,7 @@ export default function HomePage() {
           <div className="container">
             <Card className="bg-[oklch(0.64_0.21_265)] text-primary-foreground">
               <CardContent className="p-12 text-center">
-                <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Demandez un devis gratuit dès aujourd'hui</h2>
+                <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Demandez un devis gratuit dès aujourd&apos;hui</h2>
                 <p className="mb-8 text-lg opacity-90">Des conseils personnalisés et la transparence des prix. Devis rapide et simple, réservation immédiate.</p>
                 <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                   <Link href="/contact">

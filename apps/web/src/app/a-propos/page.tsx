@@ -1,4 +1,4 @@
-import { Award, CheckCircle2, Droplets, Heart, Shield, Sparkles, Star, Users, Wrench, Wind } from 'lucide-react';
+import { Award, CheckCircle2, Droplets, Heart, Shield, Sparkles, Star, Users, Wrench } from 'lucide-react';
 
 export default function AboutPage() {
   const values = [
@@ -93,7 +93,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Le meilleur personnel & équipement</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">Être à la pointe de la technologie et à l'écoute des besoins de notre clientèle nécessite un développement continu. La garantie de Premium Solution est d'apporter le meilleur service possible à ses clients.</p>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">Être à la pointe de la technologie et à l&apos;écoute des besoins de notre clientèle nécessite un développement continu. La garantie de Premium Solution est d&apos;apporter le meilleur service possible à ses clients.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {equipment.map((item) => (
@@ -128,7 +128,7 @@ export default function AboutPage() {
                       <Star key={j} className="h-5 w-5 fill-primary text-primary" />
                     ))}
                   </div>
-                  <p className="mb-4 text-muted-foreground">{i === 0 ? '"Travail bien fait et rapidement et le personnel toujours très aimable. Je recommande vivement Premium Solution !"' : i === 1 ? '"Travail rapide et soigné et les dames qui m\'ont servie sont très sympathiques. Service impeccable !"' : '"Service professionnel et de qualité. Je fais appel à Premium Solution régulièrement et je suis toujours satisfaite."'}</p>
+                  <p className="mb-4 text-muted-foreground">{i === 0 ? '&quot;Travail bien fait et rapidement et le personnel toujours très aimable. Je recommande vivement Premium Solution !&quot;' : i === 1 ? '&quot;Travail rapide et soigné et les dames qui m\'ont servie sont très sympathiques. Service impeccable !&quot;' : '&quot;Service professionnel et de qualité. Je fais appel à Premium Solution régulièrement et je suis toujours satisfaite.&quot;'}</p>
                   <div className="text-sm font-medium text-foreground">{i === 2 ? 'Claire M.' : i === 1 ? 'Sophie D.' : 'Marie L.'}</div>
                   <div className="text-xs text-muted-foreground">Cliente depuis {i === 2 ? '2018' : i === 1 ? '2019' : '2020'}</div>
                 </div>

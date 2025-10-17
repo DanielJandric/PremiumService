@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const templates = await prisma.template.findMany({ orderBy: { createdAt: 'desc' } });
     return NextResponse.json(templates);
-  } catch (e) {
+  } catch (_e) {
     // En dev sans DB, renvoyer une liste vide pour ne pas bloquer l'UI
     return NextResponse.json([]);
   }
