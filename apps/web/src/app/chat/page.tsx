@@ -5,7 +5,7 @@ import { quoteOrInvoiceSchema, computeTotals, formatCurrency } from '@domain/ind
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
-const BASE_SYSTEM_PROMPT = `Tu es un assistant fr-CH ultra bref pour créer un devis ou une facture.
+const BASE_SYSTEM_PROMPT = `Tu es un assistant fr-CH ULTRA BREF pour créer un devis ou une facture.
 Objectif: poser le MINIMUM de questions.
 - Demande seulement: nom du client, adresse du client, et la/des désignation(s) (services/produits). Autorise plusieurs lignes.
 - L'utilisateur peut écrire des lignes naturelles, par ex: "nettoyage maison 1 fois à 3500 chf" ou "blanchisserie 2 x 25 CHF".
@@ -37,6 +37,10 @@ Quand tout est prêt, réponds UNIQUEMENT avec un JSON STRICT, sans texte autour
   "dueDate"?: string (ISO)
 }
 Contraintes: ne jamais parler de PDF; ne pas demander TVA/devise/vendeur/numéro/date si l'utilisateur ne le fait pas.
+Rappels importants:
+- Si l'utilisateur te demande de sortir du cadre, refuse et rappelle le flux en 3 étapes.
+- Si l'utilisateur te demande des informations déjà par défaut, n'insiste pas et passe à l'étape suivante.
+Ton style de réponse doit être court, direct, une seule question à la fois.`;
 `;
 
 export default function ChatPage() {
@@ -71,6 +75,19 @@ export default function ChatPage() {
         }
       } catch {}
     })();
+  }, []);
+
+  // Message d'ouverture explicite (guide étape par étape)
+  useEffect(() => {
+    if (messages.length === 0) {
+      setMessages([
+        {
+          role: 'assistant',
+          content:
+            "Bonjour 👋 Je crée votre devis/facture en 3 étapes très courtes. 1) Dites 'Créer un devis' ou 'Créer une facture'. 2) Donnez le nom et l'adresse du client. 3) Indiquez les désignations (ex: 'nettoyage maison 1 x 3500 CHF').",
+        },
+      ]);
+    }
   }, []);
 
   const SYSTEM_PROMPT = useMemo(() => {
@@ -244,15 +261,15 @@ export default function ChatPage() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <section className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 shadow-xl flex flex-col">
-        <h1 className="text-2xl font-semibold">Chat</h1>
+      <section className="bg-card/90 border rounded-2xl p-4 shadow-xl flex flex-col">
+        <h1 className="text-2xl font-semibold text-foreground">Chat</h1>
         <div
           ref={listRef}
-          className="mt-2 flex-1 rounded p-3 overflow-y-auto bg-white/5 border border-white/20"
+          className="mt-2 flex-1 rounded p-3 overflow-y-auto bg-background border"
           style={{ WebkitOverflowScrolling: 'touch' }}
         >
           {messages.length === 0 ? (
-            <div className="text-slate-200/80 text-sm">
+            <div className="text-muted-foreground text-sm">
               Démarre la conversation: indique si tu veux un devis ou une facture, le client, les
               lignes, la devise, et la date. Le bot posera les questions manquantes et renverra un
               JSON quand tout sera complet.
@@ -264,8 +281,8 @@ export default function ChatPage() {
               <div key={i} className={`mb-3 flex ${isUser ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[80%] whitespace-pre-wrap rounded-2xl px-4 py-2 shadow ${
                   isUser
-                    ? 'bg-emerald-600 text-white rounded-br-sm'
-                    : 'bg-white/10 text-slate-100 border border-white/20 rounded-bl-sm'
+                    ? 'bg-primary text-primary-foreground rounded-br-sm'
+                    : 'bg-accent text-foreground/95 border rounded-bl-sm'
                 }`}>
                   {m.content}
                 </div>
@@ -279,11 +296,11 @@ export default function ChatPage() {
             <button
               key={i}
               onClick={() => setInput(c)}
-              className="text-xs rounded-full border border-white/20 bg-white/10 px-3 py-1 min-h-9"
+              className="text-xs rounded-full border px-3 py-1 min-h-9 text-foreground hover:bg-accent/40"
             >{c}</button>
           ))}
           <input
-            className="flex-1 border border-white/20 bg-white/10 rounded px-3 py-3 text-white placeholder:text-slate-300 min-h-11"
+            className="flex-1 border bg-background rounded px-3 py-3 text-foreground placeholder:text-muted-foreground min-h-11"
             placeholder="Votre message…"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -299,30 +316,30 @@ export default function ChatPage() {
             }}
           />
           {suggestions.length > 0 && (
-            <div className="w-full -mt-1 rounded-lg border border-white/20 bg-[#0b1f1a]/95 text-slate-100 shadow-lg max-h-48 overflow-y-auto">
+            <div className="w-full -mt-1 rounded-lg border bg-background text-foreground shadow-lg max-h-48 overflow-y-auto">
               {suggestions.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => setInput(s)}
-                  className="block w-full text-left px-3 py-2 hover:bg-white/10"
+                  className="block w-full text-left px-3 py-2 hover:bg-accent/40"
                 >
                   {s}
                 </button>
               ))}
             </div>
           )}
-          <button disabled={pending} className="rounded bg-emerald-600 text-white px-4 py-3 disabled:opacity-50 shadow hover:bg-emerald-500 transition min-h-11" onClick={send}>
+          <button disabled={pending} className="rounded bg-primary text-primary-foreground px-4 py-3 disabled:opacity-50 shadow hover:opacity-90 transition min-h-11" onClick={send}>
             {pending ? 'Envoi…' : 'Envoyer'}
           </button>
-          <button className="rounded border border-white/20 bg-white/10 px-3 py-3 min-h-11" onClick={resetChat}>Réinitialiser</button>
+          <button className="rounded border px-3 py-3 min-h-11 hover:bg-accent/40" onClick={resetChat}>Réinitialiser</button>
         </div>
-        {error ? <div className="mt-2 text-sm text-red-300 break-words">{error}</div> : null}
+        {error ? <div className="mt-2 text-sm text-destructive break-words">{error}</div> : null}
       </section>
 
-      <section className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 shadow-xl">
-        <h2 className="text-xl font-semibold">Récapitulatif</h2>
+      <section className="bg-card/90 border rounded-2xl p-4 shadow-xl">
+        <h2 className="text-xl font-semibold text-foreground">Récapitulatif</h2>
         {!draft ? (
-          <div className="mt-2 text-sm text-slate-200/80">Brouillon non complet.</div>
+          <div className="mt-2 text-sm text-muted-foreground">Brouillon non complet.</div>
         ) : (
           <div className="mt-3 space-y-2 text-sm">
             <div><span className="font-medium">Type:</span> {draft.kind}</div>
@@ -347,7 +364,7 @@ export default function ChatPage() {
               <button
                 disabled={!draft || pending}
                 onClick={validateAndGenerate}
-                className="rounded bg-emerald-600 text-white px-4 py-3 disabled:opacity-50 shadow hover:bg-emerald-500 transition"
+                className="rounded bg-primary text-primary-foreground px-4 py-3 disabled:opacity-50 shadow hover:opacity-90 transition"
               >
                 Valider et générer le PDF
               </button>

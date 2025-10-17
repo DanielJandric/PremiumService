@@ -18,6 +18,9 @@ export async function POST(req: NextRequest) {
   const payload = {
     model: 'gpt-4o-mini',
     messages,
+    temperature: 0.1,
+    top_p: 0.1,
+    max_tokens: 800,
     response_format: mode === 'json' ? { type: 'json_object' } : undefined,
   } as any;
 

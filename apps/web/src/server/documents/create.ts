@@ -74,7 +74,7 @@ export async function createDocument(payload: unknown, options: { validated: boo
       address: data.seller.address ?? brand?.company?.address,
       email: data.seller.email ?? brand?.company?.email,
       vatNumber: brand?.company?.vatNumber,
-      logoUrl: brand?.logoUrl || '/template/logo.png',
+      logoUrl: brand?.logoUrl || '/logo-transparent.png',
     },
     brand: { primaryColor: brand?.primaryColor ?? '#0b1f1a' },
     payment: brand?.payment,

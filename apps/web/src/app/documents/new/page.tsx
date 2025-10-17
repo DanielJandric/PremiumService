@@ -56,23 +56,23 @@ export default function NewDocumentPage() {
   }
 
   return (
-    <div className="max-w-2xl backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 shadow-xl">
-      <h1 className="text-2xl font-semibold">Nouveau document</h1>
-      <p className="mt-2 text-slate-200/90">
+    <div className="max-w-2xl bg-card/90 border rounded-2xl p-6 shadow-xl">
+      <h1 className="text-2xl font-semibold text-foreground">Nouveau document</h1>
+      <p className="mt-2 text-muted-foreground">
         Génère un devis de démonstration avec les coordonnées Premium Solution. Les données
         exactes seront personnalisables dans la prochaine étape du wizard.
       </p>
       <button
-        className="mt-6 rounded-lg bg-emerald-600 text-white px-4 py-2 disabled:opacity-50 shadow hover:bg-emerald-500 transition"
+        className="mt-6 rounded-lg bg-primary text-primary-foreground px-4 py-2 disabled:opacity-50 shadow hover:opacity-90 transition"
         onClick={onGenerate}
         disabled={loading}
       >
         {loading ? 'Génération…' : 'Valider et générer le PDF'}
       </button>
       {resultUrl ? (
-        <div className="mt-4 text-sm">PDF: <a className="text-emerald-300 underline" href={resultUrl} target="_blank">ouvrir</a></div>
+        <div className="mt-4 text-sm">PDF: <a className="text-primary underline" href={resultUrl} target="_blank">ouvrir</a></div>
       ) : null}
-      {error ? <div className="mt-4 text-sm text-red-300 break-words">{error}</div> : null}
+      {error ? <div className="mt-4 text-sm text-destructive break-words">{error}</div> : null}
     </div>
   );
 }

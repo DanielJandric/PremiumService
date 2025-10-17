@@ -44,30 +44,30 @@ export default function TemplatesPage() {
 
   return (
     <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
-      <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 shadow-xl">
-        <h2 className="text-lg font-semibold">Éditeur de template</h2>
-        <div className="mt-3 text-xs text-slate-200/80">HTML</div>
-        <div className="mt-1 overflow-hidden rounded-lg border border-white/20">
+      <div className="bg-card/90 border rounded-2xl p-4 shadow-xl">
+        <h2 className="text-lg font-semibold text-foreground">Éditeur de template</h2>
+        <div className="mt-3 text-xs text-muted-foreground">HTML</div>
+        <div className="mt-1 overflow-hidden rounded-lg border">
           <Editor height="50vh" defaultLanguage="html" value={html} onChange={(v) => setHtml(v ?? '')} theme="vs-dark" options={{ minimap: { enabled: false } }} />
         </div>
-        <div className="mt-4 text-xs text-slate-200/80">CSS</div>
-        <div className="mt-1 overflow-hidden rounded-lg border border-white/20">
+        <div className="mt-4 text-xs text-muted-foreground">CSS</div>
+        <div className="mt-1 overflow-hidden rounded-lg border">
           <Editor height="22vh" defaultLanguage="css" value={css} onChange={(v) => setCss(v ?? '')} theme="vs-dark" options={{ minimap: { enabled: false } }} />
         </div>
         <div className="mt-4">
-          <button className="rounded-lg bg-emerald-600 text-white px-4 py-2 shadow hover:bg-emerald-500 transition disabled:opacity-50" onClick={onPreview} disabled={loading}>
+          <button className="rounded-lg bg-primary text-primary-foreground px-4 py-2 shadow hover:opacity-90 transition disabled:opacity-50" onClick={onPreview} disabled={loading}>
             {loading ? 'Génération…' : 'Aperçu PDF'}
           </button>
           {error ? (
-            <div className="mt-2 text-sm text-red-300 break-words">{error}</div>
+            <div className="mt-2 text-sm text-destructive break-words">{error}</div>
           ) : null}
         </div>
       </div>
-      <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 shadow-xl min-h-[78vh] flex items-center justify-center">
+      <div className="bg-card/90 border rounded-2xl p-4 shadow-xl min-h-[78vh] flex items-center justify-center">
         {previewUrl ? (
-          <iframe src={previewUrl} className="w-full h-[76vh] rounded-lg border border-white/20 bg-white/5" />
+          <iframe src={previewUrl} className="w-full h-[76vh] rounded-lg border bg-background" />
         ) : (
-          <div className="text-slate-200/80 text-sm">Appuyez sur “Aperçu PDF” pour générer un PDF temporaire.</div>
+          <div className="text-muted-foreground text-sm">Appuyez sur “Aperçu PDF” pour générer un PDF temporaire.</div>
         )}
       </div>
     </div>

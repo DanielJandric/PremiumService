@@ -75,7 +75,7 @@ export const defaultClassicCH = {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   `,
   brand: {
-    logoUrl: '/template/logo.png',
+    logoUrl: '/logo-transparent.png',
     primaryColor: '#0b1f1a',
     company: {
       name: 'Premium Solution',

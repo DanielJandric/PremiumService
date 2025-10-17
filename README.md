@@ -83,7 +83,7 @@ PRISMA_DISABLE_PREPARED_STATEMENTS=true
 ```bash
 pnpm install
 pnpm -C packages/domain build
-pnpm -C apps/web dev -p 3004
+pnpm -C apps/web dev -p 3012
 ```
 
 ### Optimisations iPhone
@@ -122,11 +122,29 @@ pnpm -C apps/web dev -p 3004
 ### Scripts utiles
 ```bash
 # dev
-pnpm -C apps/web dev -p 3004
+pnpm -C apps/web dev -p 3012
 
 # e2e (si configurés)
 pnpm -C apps/web test:e2e
 ```
+
+### UI: marketing vs privé
+
+- Public (marketing) servi 1:1 depuis le build fourni:
+  - Routes: `/`, `/a-propos`, `/services`, `/contact` → `public/original-index.html` + `public/assets/*` + `public/newsite.css` (middleware de réécriture).
+- Privé (appli Next):
+  - Chat: `/internal/chat` (redirigé depuis `/chat`)
+  - Documents: `/internal/documents` (redirigé depuis `/documents`)
+  - Templates: `/templates`
+
+### URLs locales
+
+- Accueil: http://localhost:3012/
+- À propos: http://localhost:3012/a-propos
+- Services: http://localhost:3012/services
+- Contact: http://localhost:3012/contact
+- Chat privé: http://localhost:3012/internal/chat
+- Documents privés: http://localhost:3012/internal/documents
 
 ### Licence
 Privé (usage interne Premium Solution).
