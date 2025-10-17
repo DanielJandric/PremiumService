@@ -99,13 +99,14 @@ ${C}
     </style>
     <script>
       (function () {
-        // Normalize founding year/experience in static marketing content
-        try {
-          document.addEventListener('DOMContentLoaded', function () {
+        // Normalize founding year/experience and narrative in static marketing content
+        function applyTextReplacements() {
+          try {
             var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
             var nodes = [];
             while (walker.nextNode()) nodes.push(walker.currentNode);
-            nodes.forEach(function (n) {
+            for (var i = 0; i < nodes.length; i++) {
+              var n = nodes[i];
               var t = n.nodeValue || '';
               var nt = t
                 .replace(/Depuis\s*2016/g, 'Depuis 2020')
@@ -122,8 +123,29 @@ ${C}
                 .replace(/Route de la Corniche 11/gi, 'Route de la Combaz 11')
                 .replace(/1066\s*Epalinges,?\s*Vaud/gi, '3963 Crans-Montana');
               if (nt !== t) n.nodeValue = nt;
-            });
+            }
+          } catch (_) {}
+        }
+
+        // Run once after DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyTextReplacements);
+        } else {
+          applyTextReplacements();
+        }
+
+        // Observe SPA mutations and re-apply replacements (debounced)
+        try {
+          var scheduled = false;
+          var observer = new MutationObserver(function () {
+            if (scheduled) return;
+            scheduled = true;
+            setTimeout(function () {
+              scheduled = false;
+              applyTextReplacements();
+            }, 150);
           });
+          observer.observe(document.documentElement, { childList: true, subtree: true, characterData: true });
         } catch (_) {}
 
         // Rotate marketing background across all Gemini images
