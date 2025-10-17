@@ -83,5 +83,38 @@ ${C}
 
     <div id="root"></div>
     
+    <script>
+      (function () {
+        // Unregister any Service Workers from the static marketing site
+        if ('serviceWorker' in navigator) {
+          try {
+            navigator.serviceWorker.getRegistrations().then(function (regs) {
+              regs.forEach(function (r) { r.unregister(); });
+            });
+          } catch (_) {}
+        }
+
+        // Force hard navigation to internal Next.js app routes
+        window.addEventListener('click', function (e) {
+          var target = e.target;
+          var anchor = target && target.closest ? target.closest('a') : null;
+          if (!anchor) return;
+          var href = anchor.getAttribute('href');
+          if (!href) return;
+          var url;
+          try { url = new URL(href, window.location.origin); } catch (_) { return; }
+          var isInternalApp = url.origin === window.location.origin && (
+            url.pathname === '/chat' ||
+            url.pathname.indexOf('/internal') === 0 ||
+            url.pathname === '/documents' ||
+            url.pathname === '/templates'
+          );
+          if (isInternalApp) {
+            e.preventDefault();
+            window.location.assign(url.href);
+          }
+        }, true);
+      })();
+    </script>
   </body>
 </html>
