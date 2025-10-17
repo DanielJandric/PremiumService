@@ -52,6 +52,23 @@ export default function ChatPage() {
   const [defaultSeller, setDefaultSeller] = useState<{ name: string; address: string; email?: string; vatNumber?: string } | null>(null);
   const listRef = useRef<HTMLDivElement | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
+  const BG_IMAGES = useMemo(
+    () => [
+      '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8.png',
+      '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (1).png',
+      '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (2).png',
+      '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (3).png',
+      '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (4).png',
+      '/Gemini_Generated_Image_82nrsb82nrsb82nr.png',
+      '/Gemini_Generated_Image_rmdg99rmdg99rmdg.png',
+      '/Gemini_Generated_Image_rmdg99rmdg99rmdg (1).png',
+    ],
+    []
+  );
+  const bgImage = useMemo(() => {
+    const day = Math.floor(Date.now() / 86400000);
+    return BG_IMAGES[day % BG_IMAGES.length];
+  }, [BG_IMAGES]);
 
   useEffect(() => {
     // Charge le vendeur par défaut depuis le dernier template (brand.company)
@@ -264,7 +281,7 @@ export default function ChatPage() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-10"
         style={{
-          backgroundImage: "url('/Gemini_Generated_Image_dgh8bqdgh8bqdgh8.png')",
+          backgroundImage: `url('${bgImage}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

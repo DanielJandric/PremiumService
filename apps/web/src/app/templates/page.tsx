@@ -48,7 +48,7 @@ export default function TemplatesPage() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 opacity-10"
         style={{
-          backgroundImage: "url('/Gemini_Generated_Image_82nrsb82nrsb82nr.png')",
+          backgroundImage: `url('${['/Gemini_Generated_Image_82nrsb82nrsb82nr.png','/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (1).png','/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (3).png'][new Date().getDay()%3]}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

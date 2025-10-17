@@ -89,7 +89,7 @@ ${C}
         content: "";
         position: fixed;
         inset: 0;
-        background-image: url('/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (4).png');
+        /* The actual image is set dynamically below for variety */
         background-size: cover;
         background-position: center;
         opacity: 0.06;
@@ -99,6 +99,25 @@ ${C}
     </style>
     <script>
       (function () {
+        // Rotate marketing background across all Gemini images
+        try {
+          var imgs = [
+            '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8.png',
+            '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (1).png',
+            '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (2).png',
+            '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (3).png',
+            '/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (4).png',
+            '/Gemini_Generated_Image_82nrsb82nrsb82nr.png',
+            '/Gemini_Generated_Image_rmdg99rmdg99rmdg.png',
+            '/Gemini_Generated_Image_rmdg99rmdg99rmdg (1).png'
+          ];
+          var ix = (new Date().getUTCDate() + new Date().getUTCHours()) % imgs.length;
+          document.body.style.setProperty('background-image', 'none');
+          document.body.style.setProperty('--gemini-bg', 'url("' + imgs[ix] + '")');
+          var styleEl = document.createElement('style');
+          styleEl.textContent = 'body::before{background-image:var(--gemini-bg)}';
+          document.head.appendChild(styleEl);
+        } catch(_) {}
         // Unregister any Service Workers from the static marketing site
         if ('serviceWorker' in navigator) {
           try {

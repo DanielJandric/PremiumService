@@ -14,7 +14,7 @@ export default async function DocumentsPage() {
           aria-hidden
           className="absolute inset-0 opacity-20"
           style={{
-            backgroundImage: "url('/Gemini_Generated_Image_rmdg99rmdg99rmdg.png')",
+            backgroundImage: `url('${['/Gemini_Generated_Image_rmdg99rmdg99rmdg.png','/Gemini_Generated_Image_rmdg99rmdg99rmdg (1).png','/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (2).png'][new Date().getDate()%3]}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
