@@ -2,17 +2,17 @@ import { Award, CheckCircle2, Droplets, Heart, Shield, Sparkles, Star, Users, Wr
 
 export default function AboutPage() {
   const values = [
-    { icon: Heart, title: 'Passion du métier', description: 'Nos employés font un travail fantastique et prennent soin de vos biens dans des conditions de travail optimales.' },
-    { icon: Shield, title: 'Qualité garantie', description: "Fondé en 2020, notre savoir-faire de 5 ans fait notre réussite." },
-    { icon: Users, title: 'Équipe professionnelle', description: 'Plus de 30 employés formés et équipés du meilleur matériel professionnel.' },
-    { icon: Award, title: "Service d'excellence", description: '500+ clients satisfaits et 5000+ travaux complétés avec succès.' },
+    { icon: Heart, title: 'Passion du métier', description: 'Nos employés accomplissent un travail remarquable et prennent soin de vos biens dans des conditions de travail optimales, avec professionnalisme et dévouement.' },
+    { icon: Shield, title: 'Qualité garantie', description: "Fondé sur une solide expérience de 5 ans, notre savoir-faire et notre engagement qualité font notre réussite et la satisfaction de nos clients." },
+    { icon: Users, title: 'Équipe professionnelle', description: 'Plus de 30 employés formés et qualifiés, équipés du meilleur matériel professionnel pour des prestations irréprochables.' },
+    { icon: Award, title: "Service d'excellence", description: '500+ clients satisfaits et 5000+ travaux complétés avec succès témoignent de notre engagement pour l\'excellence.' },
   ];
 
   const equipment = [
     { icon: Droplets, name: 'Laveur de vitre', description: 'Équipement professionnel pour un nettoyage impeccable' },
     { icon: Sparkles, name: 'Nettoyeur de tapis', description: 'Machines spécialisées pour tous types de tapis' },
     { icon: Wrench, name: 'Fourgons de travail', description: 'Flotte de véhicules pour nos interventions' },
-    { icon: Sparkles, name: 'Cireuse', description: "Pour l'entretien des sols" },
+    { icon: Sparkles, name: 'Cireuse', description: "Pour l'entretien soigné des sols" },
     { icon: Droplets, name: 'Microfibre', description: 'Matériaux de qualité professionnelle' },
     { icon: Shield, name: 'Désinfectant', description: 'Produits professionnels et écologiques' },
     { icon: Droplets, name: 'Haute pression', description: 'Nettoyage en profondeur' },
@@ -22,7 +22,7 @@ export default function AboutPage() {
   const stats = [
     { value: '5+', label: "Ans d'expérience", icon: Award },
     { value: '500+', label: 'Clients satisfaits', icon: Users },
-    { value: '30+', label: 'Employés', icon: Users },
+    { value: '30+', label: 'Employés qualifiés', icon: Users },
     { value: '5K+', label: 'Travaux complétés', icon: CheckCircle2 },
   ];
 
@@ -93,7 +93,7 @@ export default function AboutPage() {
         <div className="container">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Le meilleur personnel & équipement</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">Être à la pointe de la technologie et à l&apos;écoute des besoins de notre clientèle nécessite un développement continu. La garantie de Premium Solution est d&apos;apporter le meilleur service possible à ses clients.</p>
+            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">Être à la pointe de la technologie et à l&apos;écoute des besoins de notre clientèle nécessite un développement continu. La garantie de Premium Solution est d&apos;apporter le meilleur service possible à ses clients, en combinant expertise humaine et équipements de haute performance.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {equipment.map((item) => (

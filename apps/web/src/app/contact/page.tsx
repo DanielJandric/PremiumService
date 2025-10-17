@@ -91,8 +91,9 @@ export default function ContactPage() {
             <div className="space-y-8">
               <div className="border rounded-lg bg-card/90">
                 <div className="p-6">
-                  <h3 className="text-lg font-semibold">Nos coordonnées</h3>
-                  <div className="mt-4 space-y-3 text-sm text-muted-foreground">
+                  <h3 className="text-lg font-semibold">Informations de contact</h3>
+                  <p className="text-sm text-muted-foreground mt-2 mb-4">Vous pouvez également nous contacter directement</p>
+                  <div className="space-y-3 text-sm text-muted-foreground">
                     <div>
                       <div className="font-medium text-foreground">Adresse</div>
                       <div>Route de la Combaz 11<br />3963 Crans-Montana<br />Suisse</div>

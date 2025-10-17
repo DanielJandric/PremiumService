@@ -20,7 +20,7 @@ export default function SiteHeader() {
           <img src="/logo-transparent.png" alt="Premium Solution" className="h-20 w-auto object-contain" />
           <div className="hidden sm:block">
             <div className="text-xl font-bold text-foreground">Premium Solution</div>
-            <div className="text-xs text-muted-foreground">Nettoyage & Conciergerie – Service Signature</div>
+            <div className="text-xs text-muted-foreground">Nettoyage & Conciergerie</div>
           </div>
         </Link>
 
@@ -33,8 +33,8 @@ export default function SiteHeader() {
         </div>
 
         <div className="hidden items-center space-x-4 md:flex">
-          <a href="tel:+41766074692" className="inline-flex items-center">
-            <span className="inline-flex items-center rounded-md border px-3 py-2 text-sm"><Phone className="mr-2 h-4 w-4" />+41 76 607 46 92</span>
+          <a href="tel:+41766074682" className="inline-flex items-center">
+            <span className="inline-flex items-center rounded-md border px-3 py-2 text-sm"><Phone className="mr-2 h-4 w-4" />+41 76 607 46 82</span>
           </a>
           <Link href="/contact" className="inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm text-primary-foreground shadow hover:opacity-90">
             Demander un devis

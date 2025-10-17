@@ -9,32 +9,32 @@ export default function HomePage() {
       icon: HomeIcon,
       title: 'Nettoyage de maison',
       description:
-        'Entretien méticuleux d’appartements et de villas, par équipes salariées et encadrées.',
-      price: 'Dès CHF 49.–',
+        'Nettoyage complet et minutieux de votre maison ou appartement avec notre équipe professionnelle qualifiée.',
+      price: 'Dès 49.- CHF',
       color: 'text-primary',
     },
     {
       icon: Sparkles,
-      title: "Nettoyage d’entretien (bureaux & locaux)",
+      title: "Nettoyage d'entretien",
       description:
-        'Propreté quotidienne, image maîtrisée, horaires flexibles avant/après ouverture.',
-      price: 'Dès CHF 250.–',
+        'Service professionnel de haute qualité pour l\'entretien régulier de votre entreprise ou de vos locaux.',
+      price: 'Dès 250.- CHF',
       color: 'text-primary',
     },
     {
       icon: Sparkles,
-      title: 'Conciergerie d’immeuble (PPE / régies)',
+      title: 'Service de conciergerie',
       description:
-        'Parties communes, gestion des déchets, petites réparations, tournées planifiées.',
+        'Gestion complète et professionnelle de vos espaces communs, évacuation des déchets et services personnalisés.',
       price: 'Sur devis',
       color: 'text-primary',
     },
   ];
 
   const stats = [
-    { label: 'années d’exigence', value: '5+', icon: CheckCircle2 },
-    { label: 'clients accompagnés', value: '500+', icon: Users },
-    { label: 'missions réalisées', value: '5 000+', icon: Star },
+    { label: "Ans d'expérience", value: '5+', icon: CheckCircle2 },
+    { label: 'Clients satisfaits', value: '500+', icon: Users },
+    { label: 'Travaux complétés', value: '5K+', icon: Star },
   ];
 
   const features = [
@@ -148,7 +148,7 @@ export default function HomePage() {
               <div>
                 <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Pourquoi choisir Premium Solution ?</h2>
                 <p className="mb-8 text-lg text-muted-foreground">
-                  Fondé en 2020, notre savoir-faire de 5 ans fait notre réussite. Il atteste d&apos;un gage de qualité et garantit nettoyage et soin professionnel pour vos vêtements et tous vos articles textiles.
+                  Ce qui fait notre différence
                 </p>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {features.map((feature) => (
