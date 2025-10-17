@@ -24,10 +24,12 @@
   --ring: var(--brand);
   --primary: var(--brand);
   --primary-foreground: oklch(1 0 0);
-  --radius: 14px;
+  --radius: 20px;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+  --shadow-card: 0 10px 30px rgba(0,0,0,.06), 0 2px 10px rgba(0,0,0,.04);
+  --shadow-elevation: 0 18px 40px rgba(0,0,0,.10), 0 2px 12px rgba(0,0,0,.05);
 }
 
 .dark {
@@ -59,6 +61,7 @@ body,
 body {
   color: var(--foreground);
   background: var(--background);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
 
 @layer components {
@@ -80,3 +83,26 @@ body {
 /* Utility animations */
 @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .animate-float { animation: float 3s ease-in-out infinite; }
+
+/* Typography scale with clamp for headings */
+@layer base {
+  h1 { font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; font-size: clamp(2rem, 1.1rem + 2.8vw, 4rem); }
+  h2 { font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; font-size: clamp(1.5rem, 1.05rem + 1.6vw, 2.5rem); }
+  h3 { font-weight: 700; line-height: 1.2; font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem); }
+  p  { line-height: 1.7; }
+}
+
+/* Focus-visible and interactive states */
+@layer base {
+  :focus-visible { outline: 2px solid color-mix(in oklab, var(--brand) 70%, white); outline-offset: 2px; }
+  a, button, [role="button"], input, select, textarea {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+    transition-duration: 180ms;
+    transition-timing-function: cubic-bezier(.2,.6,.2,1);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+}

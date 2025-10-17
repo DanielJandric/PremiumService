@@ -73,7 +73,7 @@ export default function TemplatesPage() {
           ) : null}
         </div>
       </div>
-      <div className="bg-card/90 border rounded-2xl p-4 shadow-xl min-h-[78vh] flex items-center justify-center">
+      <div className="bg-card/90 border rounded-2xl p-4 shadow-card min-h-[78vh] flex items-center justify-center">
         {previewUrl ? (
           <iframe src={previewUrl} className="w-full h-[76vh] rounded-lg border bg-background" />
         ) : (

@@ -4,10 +4,13 @@ import { useEffect } from 'react';
 // Lightweight client applier using brand.ts logic copied from NewWebSite if available.
 export default function BrandFromLogo() {
   useEffect(() => {
+    // Lightweight client-side color hinting: set CSS vars from data attributes on <html> if provided
     try {
-      // Apply brand from public logo to align primary/accent with site design
-      // Fallback to no-op if function not available
-      // In this repo, server utilities are not usable client-side, so noop
+      const root = document.documentElement;
+      const primary = root.getAttribute('data-brand-primary');
+      const accent = root.getAttribute('data-brand-accent');
+      if (primary) root.style.setProperty('--brand', primary);
+      if (accent) root.style.setProperty('--accent', accent);
     } catch {}
   }, []);
   return null;

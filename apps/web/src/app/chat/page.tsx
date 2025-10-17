@@ -354,7 +354,7 @@ export default function ChatPage() {
               ))}
             </div>
           )}
-          <button disabled={pending} className="rounded bg-primary text-primary-foreground px-4 py-3 disabled:opacity-50 shadow hover:opacity-90 transition min-h-11" onClick={send}>
+          <button disabled={pending} className="rounded bg-primary text-primary-foreground px-4 py-3 disabled:opacity-50 shadow-card hover:opacity-90 transition min-h-11" onClick={send}>
             {pending ? 'Envoi…' : 'Envoyer'}
           </button>
           <button className="rounded border px-3 py-3 min-h-11 hover:bg-accent/40" onClick={resetChat}>Réinitialiser</button>

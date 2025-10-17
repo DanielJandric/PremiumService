@@ -28,7 +28,7 @@ export default async function DocumentsPage() {
         <h1 className="text-2xl font-semibold text-foreground">Documents</h1>
         <a href="/documents/new" className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-primary-foreground shadow hover:opacity-90">Nouveau devis/facture</a>
       </div>
-      <div className="mt-4 overflow-hidden rounded-2xl border bg-card/90">
+      <div className="mt-4 overflow-hidden rounded-2xl border bg-card/90 shadow-card">
         <table className="w-full text-sm">
           <thead>
             <tr className="text-left border-b bg-accent/40">

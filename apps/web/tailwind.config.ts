@@ -45,6 +45,10 @@ export default {
         md: 'var(--radius-md)',
         sm: 'var(--radius-sm)',
       },
+      boxShadow: {
+        card: 'var(--shadow-card)',
+        elevation: 'var(--shadow-elevation)'
+      }
     },
   },
   plugins: [],
