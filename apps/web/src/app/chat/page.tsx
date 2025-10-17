@@ -279,11 +279,12 @@ export default function ChatPage() {
     <div className="relative">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-10"
+        className="pointer-events-none absolute inset-0 -z-10"
         style={{
           backgroundImage: `url('${bgImage}')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
+          opacity: 0.03,
         }}
       />
       <div className="grid gap-6 lg:grid-cols-2">
