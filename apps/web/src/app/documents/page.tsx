@@ -9,6 +9,21 @@ export default async function DocumentsPage() {
   const docs = await fetchDocuments();
   return (
     <main className="container py-6">
+      <section className="relative overflow-hidden rounded-2xl border bg-gradient-to-br from-accent/20 via-background to-background mb-6">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "url('/Gemini_Generated_Image_rmdg99rmdg99rmdg.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        <div className="relative p-6">
+          <h2 className="text-xl font-semibold text-foreground">Vos documents</h2>
+          <p className="text-sm text-muted-foreground">Devis et factures générés avec votre charte Premium.</p>
+        </div>
+      </section>
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold text-foreground">Documents</h1>
         <a href="/documents/new" className="inline-flex items-center justify-center rounded-md bg-primary px-3 py-2 text-primary-foreground shadow hover:opacity-90">Nouveau devis/facture</a>

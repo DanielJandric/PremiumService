@@ -43,7 +43,17 @@ export default function TemplatesPage() {
   }
 
   return (
-    <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-10"
+        style={{
+          backgroundImage: "url('/Gemini_Generated_Image_82nrsb82nrsb82nr.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div className="grid gap-6 grid-cols-1 lg:grid-cols-2">
       <div className="bg-card/90 border rounded-2xl p-4 shadow-xl">
         <h2 className="text-lg font-semibold text-foreground">Éditeur de template</h2>
         <div className="mt-3 text-xs text-muted-foreground">HTML</div>
@@ -69,6 +79,7 @@ export default function TemplatesPage() {
         ) : (
           <div className="text-muted-foreground text-sm">Appuyez sur “Aperçu PDF” pour générer un PDF temporaire.</div>
         )}
+      </div>
       </div>
     </div>
   );

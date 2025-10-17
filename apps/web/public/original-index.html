@@ -83,6 +83,20 @@ ${C}
 
     <div id="root"></div>
     
+    <style>
+      /* Subtle page-wide decorative background using a Gemini image */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url('/Gemini_Generated_Image_dgh8bqdgh8bqdgh8 (4).png');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.06;
+        pointer-events: none;
+        z-index: -1;
+      }
+    </style>
     <script>
       (function () {
         // Unregister any Service Workers from the static marketing site

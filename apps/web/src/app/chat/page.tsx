@@ -259,7 +259,17 @@ export default function ChatPage() {
   const chips = useMemo(() => ['Créer un devis', 'Créer une facture'], []);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 opacity-10"
+        style={{
+          backgroundImage: "url('/Gemini_Generated_Image_dgh8bqdgh8bqdgh8.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      <div className="grid gap-6 lg:grid-cols-2">
       <section className="bg-card/90 border rounded-2xl p-4 shadow-xl flex flex-col">
         <h1 className="text-2xl font-semibold text-foreground">Chat</h1>
         <div
@@ -371,6 +381,7 @@ export default function ChatPage() {
           </div>
         )}
       </section>
+      </div>
     </div>
   );
 }
