@@ -3,21 +3,21 @@ import { CheckCircle2, Home, Sparkles, Wind } from 'lucide-react';
 
 export default function ServicesPage() {
   const services = [
-    { id: 'nettoyage-maison', icon: Home, category: 'Nettoyage', title: 'Nettoyage de maison', description: 'Soin intégral des espaces de vie, avec une constance de rendu et une attention aux détails.', price: 'Dès CHF 49.–', includes: ["Jusqu'à 150 m²", '4 heures de nettoyage', 'Cuisine (plan de travail, évier)', 'Salle de bain'] },
-    { id: 'nettoyage-entretien', icon: Home, category: 'Nettoyage', title: "Nettoyage d’entretien (bureaux & locaux)", description: 'Standards élevés pour vos bureaux, zones communes et espaces clients. Interventions tôt le matin, tard le soir ou le week-end.', price: 'Dès CHF 250.–', includes: ["Jusqu'à 150 m²", '7 heures de nettoyage', 'Dépoussiérer des meubles', '2 personnes pendant 5 heures'] },
-    { id: 'nettoyage-stores', icon: Wind, category: 'Nettoyage', title: 'Nettoyage des stores', description: 'Remise à neuf des stores (emménagement, déménagement, entretien annuel), respect des matériaux.', price: 'Dès CHF 240.–', includes: ['2 personnes pendant 2 heures', 'Cuisine (plan de travail, évier)', 'Salle de bain', 'Dépoussiérer des meubles'] },
-    { id: 'nettoyage-fin-bail', icon: Home, category: 'Nettoyage', title: 'Nettoyage de fin de bail (avec garantie 72 h)', description: "Préparation complète pour l’état des lieux. Reprise offerte si une retouche est demandée sous 72 h.", price: 'Dès CHF 900.–', includes: ['Cuisine', 'Salle de bain', '4 pièces', 'Stores et fenêtres'] },
-    { id: 'nettoyage-rideaux', icon: Wind, category: 'Nettoyage', title: 'Nettoyage de rideaux', description: 'Nettoyage professionnel adapté aux tissus, tenue et tombé conservés.', price: 'Dès CHF 35.–', includes: ['Rideaux en soie', 'Rideaux en velours doublé', 'Rideaux molletonné', 'Rideaux en velours doublé'] },
-    { id: 'tapis-entretien', icon: Sparkles, category: 'Spécialisé', title: 'Entretien de tapis', description: 'Nettoyage en profondeur, hygiène maîtrisée, longévité préservée.', price: 'Dès CHF 39.–', includes: ['Tapis mécanique fin', 'Tapis mécanique haute laine', 'Tapis de marque, de designer', 'Tapis en soie'] },
+    { id: 'nettoyage-maison', icon: Home, category: 'Nettoyage', title: 'Nettoyage de maison', description: 'Nettoyage complet et minutieux de votre maison ou appartement avec notre équipe professionnelle qualifiée.', price: 'Dès 49.- CHF', includes: ["Jusqu'à 150 m²", '4 heures de nettoyage', 'Cuisine (plan de travail, évier)', 'Salle de bain'] },
+    { id: 'nettoyage-entretien', icon: Home, category: 'Nettoyage', title: "Nettoyage d'entretien", description: 'Service professionnel de haute qualité pour l\'entretien régulier de votre entreprise ou de vos locaux.', price: 'Dès 250.- CHF', includes: ["Jusqu'à 150 m²", '7 heures de nettoyage', 'Dépoussiérage des meubles', '2 personnes pendant 5 heures'] },
+    { id: 'nettoyage-stores', icon: Wind, category: 'Nettoyage', title: 'Nettoyage stores', description: 'Laissez-nous nous occuper du nettoyage de vos stores avec expertise.', price: 'Dès 240.- CHF', includes: ['2 personnes pendant 2 heures', 'Cuisine (plan de travail, évier)', 'Salle de bain', 'Dépoussiérage des meubles'] },
+    { id: 'nettoyage-fin-bail', icon: Home, category: 'Nettoyage', title: 'Nettoyage fin de bail', description: "Nettoyage complet pour un rendu irréprochable avant l\'état des lieux.", price: 'Dès 900.- CHF', includes: ['Cuisine complète', 'Salle de bain', '4 pièces', 'Stores et fenêtres'] },
+    { id: 'nettoyage-rideaux', icon: Wind, category: 'Nettoyage', title: 'Nettoyage de rideaux', description: "Service expert pour l\'entretien de vos textiles d\'ameublement.", price: 'Dès 12.- CHF', includes: ['Rideaux en soie', 'Rideaux en velours doublé', 'Rideaux molletonnés', 'Rideaux en velours doublé'] },
+    { id: 'tapis-entretien', icon: Sparkles, category: 'Spécialisé', title: 'Tapis entretien', description: 'Nettoyage en profondeur pour préserver la longévité et l\'hygiène de vos tapis.', price: 'Dès 38.- CHF', includes: ['Tapis mécanique fin', 'Tapis mécanique haute laine', 'Tapis de marque, de designer', 'Tapis en soie'] },
   ];
 
   return (
     <div className="flex-1">
       <section className="bg-gradient-to-br from-accent/20 via-background to-background py-16 md:py-24">
         <div className="container text-center">
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Nos Services</h1>
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Nos services</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Prestations de nettoyage et de conciergerie conçues pour durer : protocoles clairs, finitions nettes, suivi à la demande.
+            À travers sa large gamme de services, Premium Solution vous propose une solution sur mesure pour tous vos besoins et pour tous types de textiles, avec une approche professionnelle et qualitative.
           </p>
           <div className="mt-2 text-sm text-muted-foreground">Des solutions sur mesure</div>
         </div>

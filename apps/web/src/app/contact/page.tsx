@@ -19,7 +19,7 @@ export default function ContactPage() {
       <section className="bg-gradient-to-br from-accent/20 via-background to-background py-16 md:py-24">
         <div className="container text-center">
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">Contactez-nous</h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">Un besoin précis, une visite technique, une urgence ? Nous répondons rapidement et organisons selon vos contraintes.</p>
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">Demandez un devis gratuit ou posez-nous vos questions. Notre équipe vous répondra dans les plus brefs délais avec professionnalisme.</p>
         </div>
       </section>
 
@@ -95,11 +95,11 @@ export default function ContactPage() {
                   <div className="mt-4 space-y-3 text-sm text-muted-foreground">
                     <div>
                       <div className="font-medium text-foreground">Adresse</div>
-                      <div>Route de la Corniche 11<br />1066 Epalinges, Vaud<br />Suisse</div>
+                      <div>Route de la Combaz 11<br />3963 Crans-Montana<br />Suisse</div>
                     </div>
                     <div>
                       <div className="font-medium text-foreground">Téléphone</div>
-                      <a href="tel:+41766074692" className="hover:text-primary">+41 76 607 46 92</a>
+                      <a href="tel:+41766074682" className="hover:text-primary">+41 76 607 46 82</a>
                     </div>
                     <div>
                       <div className="font-medium text-foreground">E-mail</div>
@@ -114,6 +114,29 @@ export default function ContactPage() {
                   <h3 className="mb-2 text-lg font-semibold">Besoin d&apos;un service urgent ?</h3>
                   <p className="mb-4 text-sm opacity-90">Appelez-nous directement pour un service express en 4 heures</p>
                   <a href="tel:+41766074682" className="inline-flex items-center justify-center rounded-md bg-white/10 px-5 py-3 shadow hover:bg-white/20 w-full">Appeler maintenant</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="pb-16">
+        <div className="container">
+          <div className="grid gap-8 md:grid-cols-2">
+            <div className="border rounded-lg bg-card/90">
+              <div className="p-6">
+                <h3 className="text-lg font-semibold">Horaires d&apos;ouverture</h3>
+                <div className="mt-4 grid grid-cols-2 gap-6 text-sm text-muted-foreground">
+                  <div>
+                    <div className="font-medium text-foreground">Lundi - Vendredi</div>
+                    <div>9h00 - 12h00</div>
+                    <div>14h00 - 18h00</div>
+                  </div>
+                  <div>
+                    <div className="font-medium text-foreground">Samedi - Dimanche</div>
+                    <div>9h00 - 12h00</div>
+                    <div>14h00 - 16h00</div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -33,8 +33,8 @@ export default function AboutPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
               <h1 className="mb-6 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">À propos de Premium Solution</h1>
-              <p className="mb-6 text-lg text-muted-foreground">Depuis 2020, nous mettons l’exigence au service de vos espaces : discrétion, ponctualité, finitions irréprochables.</p>
-              <p className="text-lg text-muted-foreground">Née en Suisse romande, Premium Solution grandit avec une idée simple : un nettoyage premium repose sur des équipes stables, un matériel de qualité et des protocoles précis. Aujourd’hui, 500+ clients et 5 000+ interventions témoignent de la constance de notre service.</p>
+              <p className="mb-6 text-lg text-muted-foreground">Nos employés font un travail remarquable et prennent soin de vos maisons avec professionnalisme et dévouement. Leur passion pour leur métier et leur engagement pour l&apos;excellence sont au cœur de notre philosophie.</p>
+              <p className="text-lg text-muted-foreground">Être à la pointe de la technologie et à l&apos;écoute des besoins de notre clientèle nécessite un développement continu. La garantie de Premium Solution est d&apos;apporter le meilleur service de nettoyage et de conciergerie possible à ses clients, en conjuguant expertise, qualité et proximité.</p>
             </div>
             <div className="relative">
               <div className="aspect-square overflow-hidden rounded-2xl shadow-2xl flex items-center justify-center p-8 bg-gradient-to-br from-white/50 to-white/30 backdrop-blur-sm">

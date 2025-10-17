@@ -59,13 +59,13 @@ export default function HomePage() {
               <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
               <div className="space-y-8">
                 <div className="inline-block rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-                  ✨ Maison fondée en 2020
+                  ✨ Votre partenaire de confiance depuis 2020
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-                  Nettoyage & Service de conciergerie, version Premium
+                  Nettoyage & Service de Conciergerie d&apos;Excellence
                 </h1>
                 <p className="text-lg text-muted-foreground">
-                  Premium Solution signe des prestations de nettoyage et de conciergerie haut de gamme pour résidences, régies et entreprises. Interventions discrètes, standards élevés, résultats mesurables.
+                  Premium Solution vous offre des services professionnels haut de gamme de nettoyage pour votre maison, votre entreprise et des prestations de conciergerie personnalisées, adaptées à tous vos besoins avec un souci du détail irréprochable.
                 </p>
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <Link href="/contact">
@@ -107,7 +107,7 @@ export default function HomePage() {
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Nos services spécialisés</h2>
               <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-                Une palette complète, pensée pour des intérieurs soignés, des espaces communs impeccables et des bureaux irréprochables — avec une attention particulière aux finitions.
+                À travers sa large gamme de services, Premium Solution vous propose une solution sur mesure pour tous vos besoins et pour tous types de textiles, avec une approche professionnelle et qualitative.
               </p>
             </div>
 
