@@ -130,16 +130,16 @@ pnpm -C apps/web test:e2e
 
 ### UI: marketing vs privé
 
-- **Public (marketing)** - Next.js SSR natif dans `app/(public)/`:
-  - Routes: `/`, `/a-propos`, `/services`, `/contact`
-  - Layout partagé avec Header et Footer dans `(public)/layout.tsx`
-  - Hot reload complet en développement
-- **Privé (appli Next)**:
+- **Public (marketing)** - Build statique du projet `NewWebSite/` (React + Vite + Tailwind v4):
+  - Routes: `/`, `/a-propos`, `/services`, `/contact` → servis via `public/original-index.html` (middleware rewrite)
+  - Modifier les pages dans `NewWebSite/client/src/pages/`
+  - Build: `cd NewWebSite && npm run build`
+  - Copier: `copy dist/public/index.html ../apps/web/public/original-index.html` + assets
+  - **Note**: NewWebSite utilise Tailwind v4 (incompatible avec Next.js qui utilise v3)
+- **Privé (appli Next)** - Next.js avec Tailwind v3:
   - Chat: `/internal/chat` (redirigé depuis `/chat`)
   - Documents: `/internal/documents` (redirigé depuis `/documents`)
   - Templates: `/templates`
-
-**Note**: L'ancien système avec build séparé (`NewWebSite/`) a été unifié dans Next.js pour simplifier la maintenance.
 
 ### URLs locales
 
