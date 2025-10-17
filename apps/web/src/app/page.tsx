@@ -148,7 +148,7 @@ export default function HomePage() {
               <div>
                 <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">Pourquoi choisir Premium Solution ?</h2>
                 <p className="mb-8 text-lg text-muted-foreground">
-                  Fondé sur une expérience forte de près de 6 ans, notre savoir-faire fait notre réussite. Il atteste d&apos;un gage de qualité et garantit nettoyage et soin professionnel pour vos vêtements et tous vos articles textiles.
+                  Fondé en 2020, notre savoir-faire de 5 ans fait notre réussite. Il atteste d&apos;un gage de qualité et garantit nettoyage et soin professionnel pour vos vêtements et tous vos articles textiles.
                 </p>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {features.map((feature) => (

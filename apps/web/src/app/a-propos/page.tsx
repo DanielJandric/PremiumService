@@ -3,7 +3,7 @@ import { Award, CheckCircle2, Droplets, Heart, Shield, Sparkles, Star, Users, Wr
 export default function AboutPage() {
   const values = [
     { icon: Heart, title: 'Passion du métier', description: 'Nos employés font un travail fantastique et prennent soin de vos biens dans des conditions de travail optimales.' },
-    { icon: Shield, title: 'Qualité garantie', description: "Fondé sur une expérience forte de près de 6 ans, notre savoir-faire fait notre réussite." },
+    { icon: Shield, title: 'Qualité garantie', description: "Fondé en 2020, notre savoir-faire de 5 ans fait notre réussite." },
     { icon: Users, title: 'Équipe professionnelle', description: 'Plus de 30 employés formés et équipés du meilleur matériel professionnel.' },
     { icon: Award, title: "Service d'excellence", description: '500+ clients satisfaits et 5000+ travaux complétés avec succès.' },
   ];
@@ -20,7 +20,7 @@ export default function AboutPage() {
   ];
 
   const stats = [
-    { value: '6+', label: "Ans d'expérience", icon: Award },
+    { value: '5+', label: "Ans d'expérience", icon: Award },
     { value: '500+', label: 'Clients satisfaits', icon: Users },
     { value: '30+', label: 'Employés', icon: Users },
     { value: '5K+', label: 'Travaux complétés', icon: CheckCircle2 },
