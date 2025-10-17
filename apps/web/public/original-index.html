@@ -115,7 +115,12 @@ ${C}
                 .replace(
                   /Premium Solution vous offre des services professionnels de nettoyage pour votre maison, votre entreprise et des prestations de conciergerie adaptées à tous vos besoins\.?/g,
                   'Premium Solution vous offre des services professionnels haut de gamme de nettoyage pour votre maison, votre entreprise et des prestations de conciergerie personnalisées, adaptées à tous vos besoins avec un souci du détail irréprochable.'
-                );
+                )
+                .replace(/Maison fondée en 2020/gi, 'Votre partenaire de confiance depuis 2020')
+                .replace(/Demander un devis(?!\s*gratuit)/g, 'Demander un devis gratuit')
+                .replace(/\+41\s*76\s*607\s*46\s*92/g, '+41 76 607 46 82')
+                .replace(/Route de la Corniche 11/gi, 'Route de la Combaz 11')
+                .replace(/1066\s*Epalinges,?\s*Vaud/gi, '3963 Crans-Montana');
               if (nt !== t) n.nodeValue = nt;
             });
           });
