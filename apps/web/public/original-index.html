@@ -99,6 +99,24 @@ ${C}
     </style>
     <script>
       (function () {
+        // Normalize founding year/experience in static marketing content
+        try {
+          document.addEventListener('DOMContentLoaded', function () {
+            var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+            var nodes = [];
+            while (walker.nextNode()) nodes.push(walker.currentNode);
+            nodes.forEach(function (n) {
+              var t = n.nodeValue || '';
+              var nt = t
+                .replace(/Depuis\s*2016/g, 'Depuis 2020')
+                .replace(/2016/g, '2020')
+                .replace(/près de 6 ans/gi, '5 ans')
+                .replace(/6\+/g, '5+');
+              if (nt !== t) n.nodeValue = nt;
+            });
+          });
+        } catch (_) {}
+
         // Rotate marketing background across all Gemini images
         try {
           var imgs = [
