@@ -107,7 +107,7 @@ export default function HomePage() {
 
               <div className="relative">
                 <div className="aspect-square overflow-hidden rounded-2xl shadow-2xl flex items-center justify-center p-8 bg-gradient-to-br from-white/50 to-white/30 backdrop-blur-sm">
-                  <img src="/logo-transparent.png" alt="Premium Solution" className="h-full w-full object-contain" />
+                  <img src="/logo-transparent.png" alt="Premium Solution" className="h-full w-full object-contain animate-float" />
                 </div>
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-primary/10 rounded-3xl blur-2xl -z-10 opacity-50"></div>
               </div>
